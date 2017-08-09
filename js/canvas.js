@@ -1,4 +1,5 @@
-var canvas = document.getElementById('nokey'),
+var canvas = document.getElementById('graphs'),
+   container = document.getElementById('top'),
    can_w = parseInt(canvas.getAttribute('width')),
    can_h = parseInt(canvas.getAttribute('height')),
    ctx = canvas.getContext('2d');
@@ -248,12 +249,12 @@ function goMovie() {
 goMovie();
 
 // Mouse effect
-canvas.addEventListener('mouseenter', function() {
+container.addEventListener('mouseenter', function() {
     //console.log('mouseenter');
     mouse_in = true;
     balls.push(mouse_ball);
 });
-canvas.addEventListener('mouseleave', function() {
+container.addEventListener('mouseleave', function() {
     //console.log('mouseleave');
     mouse_in = false;
     var new_balls = [];
@@ -264,9 +265,12 @@ canvas.addEventListener('mouseleave', function() {
     });
     balls = new_balls.slice(0);
 });
-canvas.addEventListener('mousemove', function(e) {
+container.addEventListener('mousemove', function(e) {
     var e = e || window.event;
+	var scrollTop     = $(window).scrollTop(),
+		    elementOffset = $('#top').offset().top,
+		    distance      = (elementOffset - scrollTop);
     mouse_ball.x = e.pageX;
-    mouse_ball.y = e.pageY;
+    mouse_ball.y = e.pageY + distance;
     //console.log(mouse_ball);
 });
