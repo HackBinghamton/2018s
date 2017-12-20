@@ -130,6 +130,7 @@ p {
 }
 
 .sponsors__tier--platinum img {
+	max-height: 12em;
 	max-width: 100%;
 }
 
